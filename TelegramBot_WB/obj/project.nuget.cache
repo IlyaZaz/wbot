@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "eIRFRL8T2kfoPY44//VjHAr1wQFEk5IWzF0HsDbn1XkbrpVkr3p9vHx/t2XlccShYb812ewTdmlluNEEdiaW0w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Lenox\\source\\repos\\TelegramBot_WB\\TelegramBot_WB\\TelegramBot_WB.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lenox\\.nuget\\packages\\htmlagilitypack\\1.11.46\\htmlagilitypack.1.11.46.nupkg.sha512",
+    "C:\\Users\\Lenox\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Lenox\\.nuget\\packages\\telegram.bot\\18.0.0\\telegram.bot.18.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
