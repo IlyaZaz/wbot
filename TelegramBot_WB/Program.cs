@@ -1,6 +1,10 @@
 ﻿using System.Net;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+
 
 namespace Program
 {
@@ -43,7 +47,10 @@ namespace Program
 			}
 			
 		}
-		private static Task Error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3) => throw new NotImplementedException();
+		private static Task Error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3)
+		{
+			throw new NotImplementedException();
+		}
 		private static int GetArticleValue(string Url)
 		{
 			int article;
