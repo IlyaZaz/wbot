@@ -20,31 +20,42 @@ namespace Program
 		private static async Task Reply2Message(ITelegramBotClient botClient, Update update, CancellationToken token)
 		{
 			var message = update.Message;
-			switch (message.Text)
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
+			if (message.Text != null)
 			{
-				case "/start":
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"Кидай ссылку на товар, чтобы я заработал");
-					break;
-				default:
-					int article = GetArticleValue(message.Text);
-					var urlMid = $"https://card.wb.ru/cards/detail?nm={article}";
-					int root = GetRootValue(urlMid);
-					IfNull(root);
-					string feedbackCount = list[list.IndexOf("feedbackCount") + 1];
-					string rate1 = list[list.IndexOf("valuationDistribution") + 2];
-					string rate2 = list[list.IndexOf("valuationDistribution") + 4];
-					string rate3 = list[list.IndexOf("valuationDistribution") + 6];
-					string rate4 = list[list.IndexOf("valuationDistribution") + 8];
-					string rate5 = list[list.IndexOf("valuationDistribution") + 10];
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"Количетсво отзывов {feedbackCount}");
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"С 1 звездой {rate1}");
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"С 2 звездами {rate2}");
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"С 3 звездами {rate3}");
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"С 4 звездами {rate4}");
-					await botClient.SendTextMessageAsync(message.Chat.Id, $"С 5 звездами {rate5}");
-					list.Clear();
-					break;
+				switch (message.Text)
+				{
+					case "/start":
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"Кидай ссылку на товар, чтобы я заработал");
+						break;
+					default:
+						int article = GetArticleValue(message.Text);
+						var urlMid = $"https://card.wb.ru/cards/detail?nm={article}";
+						int root = GetRootValue(urlMid);
+						IfNull(root);
+						string feedbackCount = list[list.IndexOf("feedbackCount") + 1];
+						string rate1 = list[list.IndexOf("valuationDistribution") + 2];
+						string rate2 = list[list.IndexOf("valuationDistribution") + 4];
+						string rate3 = list[list.IndexOf("valuationDistribution") + 6];
+						string rate4 = list[list.IndexOf("valuationDistribution") + 8];
+						string rate5 = list[list.IndexOf("valuationDistribution") + 10];
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"Количетсво отзывов {feedbackCount}");
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"С 1 звездой {rate1}");
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"С 2 звездами {rate2}");
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"С 3 звездами {rate3}");
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"С 4 звездами {rate4}");
+						await botClient.SendTextMessageAsync(message.Chat.Id, $"С 5 звездами {rate5}");
+						list.Clear();
+						break;
+				}
 			}
+			else
+			{
+
+				await botClient.SendTextMessageAsync(message.Chat.Id, "");
+			}
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
+			
 			
 		}
 		private static Task Error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3)
